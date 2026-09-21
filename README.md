@@ -17,7 +17,7 @@ _I plan to add better syntax highlighting with lsp support_
 
 ### Color palette HEX values
 
-!(Palette HEX values)["./assets/palette.jpg"]
+![Palette HEX values](assets/palette.jpg)
 
 
 ---
