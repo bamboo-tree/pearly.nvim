@@ -2,96 +2,188 @@
 local Pearly = {}
 
 local palette = {
-    bg_1     = "#222222",
-    bg_2     = "#111111",
+    bg_1     = "#303030",
+    bg_2     = "#202020",
     bg_3     = "#000000",
 
-    fg_1     = "#BBBBBB",
-    fg_2     = "#DDDDDD",
-    fg_3     = "#FFFFFF",
+    fg_1     = "#909090",
+    fg_2     = "#B0B0B0",
+    fg_3     = "#F0F0F0",
 
-    red      = "#C43040",
+    red      = "#F03020",
     green    = "#10F060",
-    yellow   = "#EECC00",
-    blue     = "#4020FF",
-    purple   = "#EE20FF",
-    aqua     = "#10F0F0",
-    orange   = "#FF8020",
-    gray     = "#777777",
+    yellow   = "#E0F000",
+    blue     = "#2060F0",
+    purple   = "#F020E0",
+    aqua     = "#20F0F0",
+    orange   = "#F08020",
+    gray     = "#707070",
 
-    red_2    = "#A40000",
-    green_2  = "#0B8900",
-    yellow_2 = "#C29000",
-    blue_2   = "#1F1FA0",
-    purple_2 = "#700080",
-    aqua_2   = "#08AEAE",
-    orange_2 = "#A84000",
-    gray_2   = "#444444",
-
+    red_2    = "#C00000",
+    green_2  = "#00B000",
+    yellow_2 = "#D0A000",
+    blue_2   = "#1010D0",
+    purple_2 = "#A00080",
+    aqua_2   = "#20B0B0",
+    orange_2 = "#C05010",
+    gray_2   = "#404040",
 }
 
 local groups = {
-    Normal               = { fg = palette.fg_1, bg = palette.bg_3 },
-    NormalFloat          = { fg = palette.fg_1, bg = palette.bg_2 }, --- what is it?
+    -- any comment
+    Comment                   = { fg = palette.fg_1, italic = true },
+    -- any constant
+    Constant                  = { fg = palette.purple_2 },
+    -- a string constant: "this is a string"
+    String                    = { fg = palette.green_2, italic = true },
+    -- a character constant: 'c', '\n'
+    Character                 = { fg = palette.orange_2 },
+    -- a number constant: 234, 0xff
+    Number                    = { fg = palette.aqua_2 },
+    -- a floating point constant: 2.3e10
+    Float                     = { fg = palette.aqua_2 },
+    -- a boolean constant: TRUE, false
+    Boolean                   = { fg = palette.purple },
+    -- any variable name
+    Identifier                = { fg = palette.fg_3 },
+    -- function name (also: methods for classes)
+    Function                  = { fg = palette.blue },
+    -- any statement
+    Statement                 = { fg = palette.green, bold = true },
+    -- if, then, else, endif, switch, etc.
+    Conditional               = { fg = palette.green },
+    -- for, do, while, etc.
+    Repeat                    = { fg = palette.orange },
+    -- case, default, etc.
+    Label                     = { fg = palette.yellow },
+    -- "sizeof", "+", "*", etc.
+    Operator                  = { fg = palette.yellow },
+    -- any other keyword
+    Keyword                   = { fg = palette.aqua_2 },
+    -- try, catch, throw
+    Exception                 = { fg = palette.red },
+    -- generic Preprocessor
+    PreProc                   = { fg = palette.aqua_2 },
+    -- preprocessor #include
+    Include                   = { fg = palette.aqua_2 },
+    -- preprocessor #define
+    Define                    = { fg = palette.aqua_2 },
+    -- same as Define
+    Macro                     = { fg = palette.green },
+    -- preprocessor #if, #else, #endif, etc.
+    PreCondit                 = { fg = palette.purple_2 },
+    -- int, long, char, etc.
+    Type                      = { fg = palette.fg_2 },
+    -- static, register, volatile, etc.
+    StorageClass              = { fg = palette.orange_2 },
+    -- struct, union, enum, etc.
+    Structure                 = { fg = palette.orange },
+    -- a typedef
+    Typedef                   = { fg = palette.blue },
+    -- any special symbol
+    Special                   = { fg = palette.purple },
+    -- special character in a constant
+    SpecialChar               = { fg = palette.green },
+    -- you can use CTRL-] on this
+    Tag                       = { reverse = true },
+    -- character that needs attention
+    Delimiter                 = { fg = palette.purple },
+    -- special things inside a -- comment
+    SpecialComment            = { fg = palette.green },
+    -- debugging statements
+    --    Debug
+    -- text that stands out, HTML -- links
+    --    Underlined
+    -- text that is de-emphasized
+    Dimmed                    = { fg = palette.bg_1 },
+    -- left blank, hidden  hl-Ignore
+    --    Ignore
+    -- any erroneous construct
+    Error                     = { fg = palette.fg_2, bg = palette.red_2 },
+    -- anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+    Todo                      = { fg = palette.bg_3, bg = palette.aqua },
+    -- added line in a diff
+    Added                     = { fg = palette.green_2 },
+    -- changed line in a diff
+    Changed                   = { fg = palette.yellow_2 },
+    -- removed line in a diff
+    Removed                   = { fg = palette.red_2 },
 
-    Cursor               = { reverse = true },
-    CursorLine           = { bg = palette.bg_1 },
-    CursorColumn         = { link = "CursorLine" },
-    CursorLineNr         = { fg = palette.bg_3, bg = palette.yellow_2 },
-    LineNr               = { fg = palette.yellow_2, bg = palette.bg_3 },
+    Normal                    = { fg = palette.fg_1, bg = palette.bg_3 },
+    NormalFloat               = { fg = palette.fg_1, bg = palette.bg_2 }, --- what is it?
 
-    Visual               = { bg = palette.blue_2 },
-    Search               = { bg = palette.yellow, reverse = true },
-    IncSearch            = { bg = palette.purple_2 },
+    Cursor                    = { fg = palette.green, bg = palette.bg_3 },
+    CursorLine                = { bg = palette.bg_1 },
+    CursorColumn              = { bg = palette.bg_1 },
+    ColorColumn               = { bg = palette.bg_2 },
+    CursorLineNr              = { fg = palette.bg_3, bg = palette.yellow_2 },
+    LineNr                    = { fg = palette.yellow_2, bg = palette.bg_3 },
 
-    StatusLine           = { bg = palette.bg_1 },
-    StatusLineNC         = { bg = palette.bg_2 },
-    WinSeparator         = { bg = palette.bg_3 },
+    Visual                    = { fg = palette.fg_3, bg = palette.purple_2 },
+    Search                    = { fg = palette.fg_3, bg = palette.blue_2 },
+    IncSearch                 = { fg = palette.bg_3, bg = palette.purple },
 
-    Pmenu                = { fg = palette.fg_1, bg = palette.bg_1 },
-    PmenuSel             = { fg = palette.fg_2, bg = palette.bg_2 },
+    StatusLine                = { bg = palette.bg_2 },
+    StatusLineNC              = { bg = palette.bg_2 },
+    WinSeparator              = { bg = palette.bg_3 },
 
-    Directory            = { fg = palette.green_2 },
-    Title                = { fg = palette.yellow },
-    ErrorMsg             = { fg = palette.red, bg = palette.bg_3 },
-    WarningMsg           = { fg = palette.yellow, bg = palette.bg_3 },
-    ModeMsg              = { fg = palette.green_2 },
-    MoreMsg              = { fg = palette.green_2 },
-    Question             = { fg = palette.green_2 },
+    Pmenu                     = { fg = palette.fg_2, bg = palette.bg_2 },
+    PmenuSel                  = { fg = palette.fg_3, bg = palette.yellow_2 },
 
-    Folded               = { bg = palette.bg_1 },
-    FoldColumn           = { bg = palette.bg_1 },
-    SignColumn           = { bg = palette.bg_3 },
-    Comment              = { fg = palette.gray, italic = true },
+    Directory                 = { fg = palette.green_2 },
+    Title                     = { fg = palette.yellow },
+    ErrorMsg                  = { fg = palette.red, bg = palette.bg_3 },
+    WarningMsg                = { fg = palette.yellow, bg = palette.bg_3 },
+    ModeMsg                   = { fg = palette.green_2 },
+    MoreMsg                   = { fg = palette.green_2 },
+    Question                  = { fg = palette.green_2 },
 
-    Constant             = { fg = palette.blue },
-    String               = { fg = palette.green },
-    Character            = { fg = palette.orange },
-    Number               = { fg = palette.aqua },
-    Boolean              = { fg = palette.purple },
+    Folded                    = { bg = palette.bg_1 },
+    FoldColumn                = { bg = palette.bg_1 },
+    SignColumn                = { bg = palette.bg_3 },
 
-    Identifier           = { fg = palette.aqua },
-    Function             = { fg = palette.blue },
+    TodoBgWARN                = { fg = palette.bg_2, bg = palette.yellow_2, bold = true },
+    TodoBgHACK                = { fg = palette.bg_2, bg = palette.yellow_2, bold = true },
+    TodoBgTODO                = { fg = palette.bg_2, bg = palette.aqua_2, bold = true },
+    TodoBgNOTE                = { fg = palette.bg_2, bg = palette.aqua_2, bold = true },
+    TodoBgTEST                = { fg = palette.bg_2, bg = palette.fg_2, bold = true },
+    TodoBgPREF                = { fg = palette.bg_2, bg = palette.fg_2, bold = true },
+    TodoBgFIX                 = { fg = palette.bg_2, bg = palette.red_2, bold = true },
+    TodoFgWARN                = { fg = palette.yellow_2 },
+    TodoFgHACK                = { fg = palette.yellow_2 },
+    TodoFgTODO                = { fg = palette.aqua_2 },
+    TodoFgNOTE                = { fg = palette.aqua_2 },
+    TodoFgTEST                = { fg = palette.fg_2 },
+    TodoFgPREF                = { fg = palette.fg_2 },
+    TodoFgFIX                 = { fg = palette.red_2 },
+    TodoSignWARN              = { fg = palette.yellow_2 },
+    TodoSignHACK              = { fg = palette.yellow_2 },
+    TodoSignTODO              = { fg = palette.aqua_2 },
+    TodoSignNOTE              = { fg = palette.aqua_2 },
+    TodoSignTEST              = { fg = palette.fg_2 },
+    TodoSignPREF              = { fg = palette.fg_2 },
+    TodoSignFIX               = { fg = palette.red_2 },
 
-    Statement            = { fg = palette.purple_2 },
-    Keyword              = { fg = palette.yellow },
-    Operator             = { fg = palette.fg_3 },
+    -- TODO: fix NeoTree dimmed text
+    NeoTreeFloatBorder        = { fg = palette.bg_1 },
+    NeoTreeTitleBar           = { fg = palette.fg2, bg = palette.bg2 },
+    NeoTreeDirectoryIcon      = { fg = palette.yellow_2 },
+    NeoTreeDirectoryName      = { fg = palette.fg_1 },
+    NeoTreeDimText            = { fg = palette.bg_1 },
 
-    PreProc              = { fg = palette.fg_2, bg = palette.purple_2 },
+    MiniStatuslineModeReplace = { fg = palette.orange, bg = palette.bg_1, bold = true },
+    MiniStatuslineModeCommand = { fg = palette.aqua, bg = palette.bg_1, bold = true },
+    MiniStatuslineModeVisual  = { fg = palette.purple, bg = palette.bg_1, bold = true },
+    MiniStatuslineModeNormal  = { fg = palette.green, bg = palette.bg_1, bold = true },
+    MiniStatuslineModeInsert  = { fg = palette.blue, bg = palette.bg_1, bold = true },
+    MiniStatuslineModeOther   = { fg = palette.fg_2, bg = palette.bg_1, bold = true },
 
-    Type                 = { fg = palette.purple },
-    Structure            = { bg = palette.green_2 },
+    MiniStatuslineInactive    = { fg = palette.fg_2, bg = palette.bg_2 },
+    MiniStatuslineFilename    = { fg = palette.fg_2, bg = palette.bg_2 },
+    MiniStatuslineFileinfo    = { fg = palette.yellow_2, bg = palette.bg_2 },
+    MiniStatuslineDevinfo     = { fg = palette.aqua_2, bg = palette.bg_2 },
 
-    Special              = { fg = palette.purple },
-    Delimiter            = { fg = palette.purple },
-
-    Todo                 = { bg = palette.green_2 },
-    Error                = { bg = palette.green_2 },
-
-    NeoTreeFloatBorder   = { fg = palette.bg_1 },
-    NeoTreeTitleBar      = { fg = palette.fg2, bg = palette.bg2 },
-    NeoTreeDirectoryIcon = { fg = palette.yellow_2 },
-    NeoTreeDirectoryName = { fg = palette.fg_1 },
+    MiniTrailspace            = { fg = palette.bg_3, bg = palette.red_2 },
 }
 
 
