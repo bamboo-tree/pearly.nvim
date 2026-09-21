@@ -13,7 +13,7 @@ local palette = {
     red      = "#F03020",
     green    = "#10F060",
     yellow   = "#E0F000",
-    blue     = "#2060F0",
+    blue     = "#2080F0",
     purple   = "#F020E0",
     aqua     = "#20F0F0",
     orange   = "#F08020",
@@ -37,7 +37,7 @@ local groups = {
     -- a string constant: "this is a string"
     String                    = { fg = palette.green_2, italic = true },
     -- a character constant: 'c', '\n'
-    Character                 = { fg = palette.orange_2 },
+    Character                 = { fg = palette.purple_2, italic = true },
     -- a number constant: 234, 0xff
     Number                    = { fg = palette.aqua_2 },
     -- a floating point constant: 2.3e10
@@ -51,25 +51,25 @@ local groups = {
     -- any statement
     Statement                 = { fg = palette.green, bold = true },
     -- if, then, else, endif, switch, etc.
-    Conditional               = { fg = palette.green },
+    Conditional               = { fg = palette.aqua },
     -- for, do, while, etc.
-    Repeat                    = { fg = palette.orange },
+    Repeat                    = { fg = palette.yellow_2 },
     -- case, default, etc.
-    Label                     = { fg = palette.yellow },
+    Label                     = { fg = palette.aqua },
     -- "sizeof", "+", "*", etc.
     Operator                  = { fg = palette.yellow },
     -- any other keyword
-    Keyword                   = { fg = palette.aqua_2 },
+    Keyword                   = { fg = palette.aqua },
     -- try, catch, throw
-    Exception                 = { fg = palette.red },
+    Exception                 = { fg = palette.orange },
     -- generic Preprocessor
-    PreProc                   = { fg = palette.aqua_2 },
+    PreProc                   = { fg = palette.blue },
     -- preprocessor #include
-    Include                   = { fg = palette.aqua_2 },
+    Include                   = { fg = palette.blue },
     -- preprocessor #define
-    Define                    = { fg = palette.aqua_2 },
+    Define                    = { fg = palette.blue },
     -- same as Define
-    Macro                     = { fg = palette.green },
+    Macro                     = { fg = palette.blue },
     -- preprocessor #if, #else, #endif, etc.
     PreCondit                 = { fg = palette.purple_2 },
     -- int, long, char, etc.
@@ -77,7 +77,7 @@ local groups = {
     -- static, register, volatile, etc.
     StorageClass              = { fg = palette.orange_2 },
     -- struct, union, enum, etc.
-    Structure                 = { fg = palette.orange },
+    Structure                 = { fg = palette.orange_2 },
     -- a typedef
     Typedef                   = { fg = palette.blue },
     -- any special symbol
@@ -87,32 +87,28 @@ local groups = {
     -- you can use CTRL-] on this
     Tag                       = { reverse = true },
     -- character that needs attention
-    Delimiter                 = { fg = palette.purple },
+    Delimiter                 = { fg = palette.green },
     -- special things inside a -- comment
-    SpecialComment            = { fg = palette.green },
+    SpecialComment            = { fg = palette.green_2 },
     -- debugging statements
-    --    Debug
+    Debug                     = { fg = palette.purple_2 },
     -- text that stands out, HTML -- links
-    --    Underlined
+    Underlined                = { fg = palette.blue, italic = true },
     -- text that is de-emphasized
     Dimmed                    = { fg = palette.bg_1 },
     -- left blank, hidden  hl-Ignore
-    --    Ignore
+    Ignore                    = { fg = palette.yellow_2, italic = true },
     -- any erroneous construct
     Error                     = { fg = palette.fg_2, bg = palette.red_2 },
-    -- anything that needs extra attention; mostly the keywords TODO FIXME and XXX
-    Todo                      = { fg = palette.bg_3, bg = palette.aqua },
-    -- added line in a diff
+
     Added                     = { fg = palette.green_2 },
-    -- changed line in a diff
     Changed                   = { fg = palette.yellow_2 },
-    -- removed line in a diff
     Removed                   = { fg = palette.red_2 },
 
     Normal                    = { fg = palette.fg_1, bg = palette.bg_3 },
-    NormalFloat               = { fg = palette.fg_1, bg = palette.bg_2 }, --- what is it?
+    NormalFloat               = { fg = palette.fg_2, bg = palette.bg_2 }, --- what is it?
 
-    Cursor                    = { fg = palette.green, bg = palette.bg_3 },
+    Cursor                    = { reverse = true },
     CursorLine                = { bg = palette.bg_1 },
     CursorColumn              = { bg = palette.bg_1 },
     ColorColumn               = { bg = palette.bg_2 },
@@ -121,14 +117,14 @@ local groups = {
 
     Visual                    = { fg = palette.fg_3, bg = palette.purple_2 },
     Search                    = { fg = palette.fg_3, bg = palette.blue_2 },
-    IncSearch                 = { fg = palette.bg_3, bg = palette.purple },
+    IncSearch                 = { fg = palette.bg_3, bg = palette.yellow_2 },
 
     StatusLine                = { bg = palette.bg_2 },
     StatusLineNC              = { bg = palette.bg_2 },
     WinSeparator              = { bg = palette.bg_3 },
 
-    Pmenu                     = { fg = palette.fg_2, bg = palette.bg_2 },
-    PmenuSel                  = { fg = palette.fg_3, bg = palette.yellow_2 },
+    Pmenu                     = { fg = palette.fg_1, bg = palette.bg_2 },
+    PmenuSel                  = { fg = palette.bg_3, bg = palette.yellow_2, bold = true },
 
     Directory                 = { fg = palette.green_2 },
     Title                     = { fg = palette.yellow },
@@ -164,18 +160,17 @@ local groups = {
     TodoSignPREF              = { fg = palette.fg_2 },
     TodoSignFIX               = { fg = palette.red_2 },
 
-    -- TODO: fix NeoTree dimmed text
-    NeoTreeFloatBorder        = { fg = palette.bg_1 },
+    NeoTreeFloatBorder        = { bg = palette.aqua },
     NeoTreeTitleBar           = { fg = palette.fg2, bg = palette.bg2 },
     NeoTreeDirectoryIcon      = { fg = palette.yellow_2 },
-    NeoTreeDirectoryName      = { fg = palette.fg_1 },
-    NeoTreeDimText            = { fg = palette.bg_1 },
+    NeoTreeDirectoryName      = { fg = palette.fg_2 },
+    NeoTreeMessage            = { link = "Comment" },
 
     MiniStatuslineModeReplace = { fg = palette.orange, bg = palette.bg_1, bold = true },
-    MiniStatuslineModeCommand = { fg = palette.aqua, bg = palette.bg_1, bold = true },
+    MiniStatuslineModeCommand = { fg = palette.blue, bg = palette.bg_1, bold = true },
     MiniStatuslineModeVisual  = { fg = palette.purple, bg = palette.bg_1, bold = true },
     MiniStatuslineModeNormal  = { fg = palette.green, bg = palette.bg_1, bold = true },
-    MiniStatuslineModeInsert  = { fg = palette.blue, bg = palette.bg_1, bold = true },
+    MiniStatuslineModeInsert  = { fg = palette.aqua, bg = palette.bg_1, bold = true },
     MiniStatuslineModeOther   = { fg = palette.fg_2, bg = palette.bg_1, bold = true },
 
     MiniStatuslineInactive    = { fg = palette.fg_2, bg = palette.bg_2 },
