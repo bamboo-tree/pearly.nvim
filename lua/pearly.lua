@@ -33,7 +33,7 @@ local groups = {
     -- any comment
     Comment                   = { fg = palette.fg_1, italic = true },
     -- any constant
-    Constant                  = { fg = palette.purple_2 },
+    Constant                  = { fg = palette.purple },
     -- a string constant: "this is a string"
     String                    = { fg = palette.green_2, italic = true },
     -- a character constant: 'c', '\n'
@@ -43,27 +43,27 @@ local groups = {
     -- a floating point constant: 2.3e10
     Float                     = { fg = palette.aqua_2 },
     -- a boolean constant: TRUE, false
-    Boolean                   = { fg = palette.purple },
+    Boolean                   = { fg = palette.purple_2 },
     -- any variable name
-    Identifier                = { fg = palette.fg_3 },
+    Identifier                = { fg = palette.aqua },
     -- function name (also: methods for classes)
     Function                  = { fg = palette.blue },
     -- any statement
     Statement                 = { fg = palette.green, bold = true },
     -- if, then, else, endif, switch, etc.
-    Conditional               = { fg = palette.aqua },
+    Conditional               = { fg = palette.green, italic = true },
     -- for, do, while, etc.
-    Repeat                    = { fg = palette.yellow_2 },
+    Repeat                    = { fg = palette.yellow, italic = true },
     -- case, default, etc.
-    Label                     = { fg = palette.aqua },
+    Label                     = { fg = palette.aqua, italic = true },
     -- "sizeof", "+", "*", etc.
-    Operator                  = { fg = palette.yellow },
+    Operator                  = { fg = palette.fg_1 },
     -- any other keyword
     Keyword                   = { fg = palette.aqua },
     -- try, catch, throw
-    Exception                 = { fg = palette.orange },
+    Exception                 = { fg = palette.orange, italic = true },
     -- generic Preprocessor
-    PreProc                   = { fg = palette.blue },
+    PreProc                   = { fg = palette.green },
     -- preprocessor #include
     Include                   = { fg = palette.blue },
     -- preprocessor #define
@@ -73,13 +73,13 @@ local groups = {
     -- preprocessor #if, #else, #endif, etc.
     PreCondit                 = { fg = palette.purple_2 },
     -- int, long, char, etc.
-    Type                      = { fg = palette.fg_2 },
+    Type                      = { fg = palette.fg_3 },
     -- static, register, volatile, etc.
     StorageClass              = { fg = palette.orange_2 },
     -- struct, union, enum, etc.
-    Structure                 = { fg = palette.orange_2 },
+    Structure                 = { fg = palette.fg_2 },
     -- a typedef
-    Typedef                   = { fg = palette.blue },
+    Typedef                   = { fg = palette.purple_2 },
     -- any special symbol
     Special                   = { fg = palette.purple },
     -- special character in a constant
@@ -160,7 +160,7 @@ local groups = {
     TodoSignPREF              = { fg = palette.fg_2 },
     TodoSignFIX               = { fg = palette.red_2 },
 
-    NeoTreeFloatBorder        = { bg = palette.aqua },
+    NeoTreeFloatBorder        = { link = "NormalFloat" },
     NeoTreeTitleBar           = { fg = palette.fg2, bg = palette.bg2 },
     NeoTreeDirectoryIcon      = { fg = palette.yellow_2 },
     NeoTreeDirectoryName      = { fg = palette.fg_2 },
