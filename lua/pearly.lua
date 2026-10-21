@@ -22,7 +22,7 @@ local palette = {
     red_2    = "#C00000",
     green_2  = "#00B000",
     yellow_2 = "#D0A000",
-    blue_2   = "#1010D0",
+    blue_2   = "#1060E0",
     purple_2 = "#A00080",
     aqua_2   = "#20B0B0",
     orange_2 = "#C05010",
@@ -57,7 +57,7 @@ local groups = {
     -- case, default, etc.
     Label                     = { fg = palette.aqua, italic = true },
     -- "sizeof", "+", "*", etc.
-    Operator                  = { fg = palette.fg_1 },
+    Operator                  = { fg = palette.orange },
     -- any other keyword
     Keyword                   = { fg = palette.aqua },
     -- try, catch, throw

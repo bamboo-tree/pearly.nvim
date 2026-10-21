@@ -1,24 +1,44 @@
 # pearly.nvim
 
-Custom neovim colorscheme inspired by built in **murphy**.
+Custom neovim colorscheme. It's ugly and I love it.
 
 ## Features
 
-Besides default syntax highlighting other third-party plugins are supported.
-These are some of them worth mentioning. More detailed list will be added later.
-
 - StatusLine
 - TODO
-- NeoTree (beta)
+- NeoTree - *partially*
 - Basic syntax
-
-_I plan to add better syntax highlighting with lsp support_
 
 
 ### Color palette HEX values
 
-![Palette HEX values](assets/palette.jpg)
+```
+bg_1     = "#303030",
+bg_2     = "#202020",
+bg_3     = "#000000",
 
+fg_1     = "#909090",
+fg_2     = "#B0B0B0",
+fg_3     = "#F0F0F0",
+
+red      = "#F03020",
+green    = "#10F060",
+yellow   = "#E0F000",
+blue     = "#2080F0",
+purple   = "#F020E0",
+aqua     = "#20F0F0",
+orange   = "#F08020",
+gray     = "#707070",
+
+red_2    = "#C00000",
+green_2  = "#00B000",
+yellow_2 = "#D0A000",
+blue_2   = "#1060E0",
+purple_2 = "#A00080",
+aqua_2   = "#20B0B0",
+orange_2 = "#C05010",
+gray_2   = "#404040",
+```
 
 ---
 
